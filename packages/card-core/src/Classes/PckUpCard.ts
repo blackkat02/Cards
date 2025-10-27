@@ -1,8 +1,9 @@
-import { ICardData, IVisualComponent } from "./interfaces";
+import { CardData } from "../Interfaces/CardData";
+import { VisualComponent } from "../Interfaces/VisualTypes";
 import { AbstractCardComponent } from "./AbstractCardComponent";
 
 // Додатковий інтерфейс для даних ПікАп картки
-interface IPckUpCardData extends ICardData {
+interface IPckUpCardData extends CardData {
   // Вплив, як у геймерських картах (наприклад, 1-10)
   influenceLevel: number;
   // Архетип, як у Таро (наприклад, 'Маг', 'Імператриця')
@@ -24,7 +25,7 @@ export class PickUpCard extends AbstractCardComponent {
   }
 
   // 🔥 Реалізація КОНТРАКТУ: Визначаємо візуальний склад Картки
-  public getVisualComponents(): IVisualComponent[] {
+  public getVisualComponents(): VisualComponent[] {
     // Картка вимагає комбінації елементів
     return [
       // 1. Рамка, яка залежить від рідкості (Rarity)

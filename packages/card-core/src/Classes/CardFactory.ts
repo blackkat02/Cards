@@ -1,6 +1,4 @@
-// packages/card-core/src/CardFactory.ts (ОНОВЛЕННЯ)
-
-import { ICardData } from "./interfaces";
+import { CardData } from "../Interfaces/CardData";
 import { AbstractCardComponent } from "./AbstractCardComponent";
 import { PickUpCard } from "./PckUpCard"; // 🔥 Імпортуємо нову картку
 
@@ -8,13 +6,13 @@ import { PickUpCard } from "./PckUpCard"; // 🔥 Імпортуємо нову 
 export abstract class AbstractCoreFactory {
   public abstract createCard(
     type: string,
-    data: ICardData
+    data: CardData
   ): AbstractCardComponent;
 }
 
 // Конкретна Фабрика (додаємо логіку створення)
 export class CoreCardFactory extends AbstractCoreFactory {
-  public createCard(type: string, data: ICardData): AbstractCardComponent {
+  public createCard(type: string, data: CardData): AbstractCardComponent {
     if (type === "PickUpCard") {
       // Приведення типу, оскільки ми знаємо, що очікуємо більше даних (IPckUpCardData)
       return new PickUpCard(data as any);
