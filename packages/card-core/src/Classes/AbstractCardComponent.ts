@@ -1,4 +1,4 @@
-import { CardData } from "../Interfaces/CardData";
+import { CardData } from "../Interfaces/interfaces";
 import { VisualComponent } from "../Interfaces/VisualTypes";
 
 // Абстрактний клас: забезпечення спільної поведінки
@@ -12,7 +12,8 @@ export abstract class AbstractCardComponent {
     this.data = data;
   }
 
-  // Спільний метод
+  // Спільний public метод щоб React-Адаптер міг його викликати ззовні.
+  // Адаптер повинен мати можливість запитати: "З яких частин ти складаєшся?"
   public getData(): CardData {
     return this.data;
   }
@@ -22,4 +23,8 @@ export abstract class AbstractCardComponent {
 
   // АБСТРАКТНИЙ МЕТОД ПОВЕДІНКИ
   public abstract onClick(): void;
+
+  public abstract reveal(): void;
+
+  public abstract flip(): void;
 }
