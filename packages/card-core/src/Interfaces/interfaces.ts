@@ -16,3 +16,8 @@ export enum Rarity {
 export enum CardType {
   PICKUP = "PickUpCard",
 }
+
+export interface PickUpCardData extends CardData {
+  influenceLevel: number;
+  archetype: string;
+}

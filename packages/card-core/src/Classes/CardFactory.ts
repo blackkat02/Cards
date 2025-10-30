@@ -1,18 +1,23 @@
 // packages/card-core/src/CardFactory.ts
 
 import { AbstractCardComponent } from "./AbstractCardComponent";
-import { CardData, CardType, Rarity } from "../Interfaces/interfaces";
+import {
+  CardData,
+  CardType,
+  Rarity,
+  PickUpCardData,
+} from "../Interfaces/interfaces";
 
 import { CommonPickUpCard } from "../PickUpCards/CommonPickUpCard";
 import { RarePickUpCard } from "../PickUpCards/RarePickUpCard";
 import { EpicPickUpCard } from "../PickUpCards/EpicPickUpCard";
 
-export abstract class AbstractCoreFactory {
+abstract class AbstractCoreFactory {
   public abstract createCard(data: CardData): AbstractCardComponent;
 }
 
 // Конкретна Фабрика: МАРШРУТИЗАЦІЯ ЗА ТИПОМ І ЦІННІСТЮ
-export class CoreCardFactory extends AbstractCoreFactory {
+class CoreCardFactory extends AbstractCoreFactory {
   public createCard(data: CardData): AbstractCardComponent {
     switch (data.cardType) {
       case CardType.PICKUP:
@@ -27,29 +32,6 @@ export class CoreCardFactory extends AbstractCoreFactory {
         );
     }
   }
-
-  // Приватний метод для інкапсуляції логіки Rarity (OCP)
-  // private createPickUpCard(data: CardData): AbstractCardComponent {
-  //   switch (data.rarity) {
-  //     case Rarity.COMMON:
-  //       return new CommonPickUpCard(data as any);
-
-  //     // 🔥 ОНОВЛЕННЯ: Додаємо нові класи Rarity
-  //     case Rarity.RARE:
-  //       return new RarePickUpCard(data as any);
-
-  //     case Rarity.EPIC:
-  //       return new EpicPickUpCard(data as any);
-
-  //     default:
-  //       // Якщо прийде LEGENDARY, а класу немає
-  //       throw new Error(
-  //         `Unknown Rarity: ${data.rarity} for PickUp Card. Class implementation missing.`
-  //       );
-  //   }
-  // }
-
-  // packages/card-core/src/CardFactory.ts (ВИПРАВЛЕННЯ)
 
   private createPickUpCard(data: CardData): AbstractCardComponent {
     // 💡 КРОК 1: Гарантуємо, що дані є повними (Type Guard)
@@ -82,3 +64,5 @@ export class CoreCardFactory extends AbstractCoreFactory {
     }
   }
 }
+
+export default { AbstractCoreFactory, CoreCardFactory };
