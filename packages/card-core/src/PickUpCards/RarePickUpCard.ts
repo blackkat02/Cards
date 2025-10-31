@@ -1,56 +1,32 @@
-// packages/card-core/src/cards/RarePickUpCard.ts
-
 import { AbstractPickUpCard } from "../Classes/AbstractPickUpCard";
+import { PickUpCardData, Rarity } from "../Interfaces/interfaces";
 import { VisualComponent } from "../Interfaces/VisualTypes";
-// Припускаємо, що InfluenceMarker потрібен і для Rare
+import { getRareVisualComponentsConfig } from "../configs-card/rare-pickup-card-config";
 
 // КОНКРЕТНИЙ КЛАС Rarity: RARE
 export class RarePickUpCard extends AbstractPickUpCard {
-  constructor(data: any) {
+  // 🔥 Використовуємо точний тип даних PickUpCardData
+  constructor(data: PickUpCardData) {
     super(data);
+    // Архітектурна дисципліна: перевіряємо, чи коректний тип Rarity
+    if (data.rarity !== Rarity.RARE) {
+      console.warn(
+        `RarePickUpCard created with incorrect Rarity: ${data.rarity}`
+      );
+    }
   }
 
-  // 🔥 РЕАЛІЗАЦІЯ КОНТРАКТУ: Унікальна структура для RARE
   public getVisualComponents(): VisualComponent[] {
-    // Rare Card: Срібна рамка, має Marker, але без Aura.
-    return [
-      // 1. Рамка
-      {
-        name: "Frame",
-        props: { style: "Metallic", size: "medium", color: "silver" },
-      },
-      // 2. Титул
-      {
-        name: "Title",
-        props: {
-          text: this.data.archetype,
-          fontStyle: "sans-serif",
-          color: "blue",
-          size: "L",
-        },
-      },
-      // 3. Зображення
-      {
-        name: "Image",
-        props: { source: `/pckup/images/${this.data.id}_rare.jpg` },
-      },
-      // 4. Marker
-      {
-        name: "InfluenceMarker",
-        props: { level: this.data.influenceLevel, icon: "Diamond" },
-      },
-      // 5. Опис
-      { name: "Description", props: { text: this.data.description } },
-    ];
+    // 💡 Викликаємо конфігураційну функцію
+    return getRareVisualComponentsConfig(this.data);
   }
 
-  // 💡 РЕАЛІЗАЦІЯ ПОВЕДІНКИ: Трохи більше логування
+  // 💡 РЕАЛІЗАЦІЯ ПОВЕДІНКИ: Середнє логування
   public reveal(): void {
     console.log(`Rare PickUp Card revealed. Starting tracking logic.`);
   }
 
   public flip(): void {
-    // Логіка перевертання
     console.log(`Rare PickUp Card flipped: Simple animation.`);
   }
 

@@ -1,45 +1,29 @@
-// packages/card-core/src/cards/CommonPickUpCard.ts (Новий Файл)
+// packages/card-core/src/cards/CommonPickUpCard.ts
 
+// ✅ Правильні імпорти з чистих джерел
 import { AbstractPickUpCard } from "../Classes/AbstractPickUpCard";
+import { PickUpCardData, Rarity } from "../Interfaces/interfaces";
 import { VisualComponent } from "../Interfaces/VisualTypes";
+import { getCommonVisualComponentsConfig } from "../configs-card/common-pickup-card-config";
 
-// КОНКРЕТНИЙ КЛАС Rarity
+// КОНКРЕТНИЙ КЛАС Rarity: COMMON
 export class CommonPickUpCard extends AbstractPickUpCard {
-  constructor(data: any) {
+  // 🔥 Використовуємо точний тип даних PickUpCardData
+  constructor(data: PickUpCardData) {
     super(data);
-    // Тут можна додати логіку перевірки, чи data.rarity === Rarity.COMMON
+    if (data.rarity !== Rarity.COMMON) {
+      console.warn(
+        `CommonPickUpCard created with incorrect Rarity: ${data.rarity}`
+      );
+    }
   }
 
-  // 🔥 РЕАЛІЗАЦІЯ КОНТРАКТУ: Унікальна структура для COMMON
-  // Common Card: проста рамка, без InfluenceMarker, прості параметри
   public getVisualComponents(): VisualComponent[] {
-    return [
-      // 1. Рамка (прості параметри)
-      {
-        name: "Frame",
-        props: { style: "Basic", size: "small", color: "gray" },
-      },
-      // 2. Титул
-      {
-        name: "Title",
-        props: {
-          text: this.data.archetype,
-          fontStyle: "sans-serif",
-          color: "dark",
-        },
-      },
-      // 3. Зображення
-      {
-        name: "Image",
-        props: { source: `/pckup/images/${this.data.id}_low.jpg` },
-      },
-      // 4. Опис
-      { name: "Description", props: { text: this.data.description } },
-      // InfluenceMarker відсутній, бо це Common-картка
-    ];
+    // 💡 Викликаємо конфігураційну функцію
+    return getCommonVisualComponentsConfig(this.data);
   }
 
-  // 💡 РЕАЛІЗАЦІЯ ПОВЕДІНКИ: Просте логування
+  // 💡 РЕАЛІЗАЦІЯ ПОВЕДІНКИ: Базове логування
   public reveal(): void {
     console.log(
       `Common PickUp Card revealed. Score: ${this.calculateInfluenceScore()}`
@@ -47,12 +31,10 @@ export class CommonPickUpCard extends AbstractPickUpCard {
   }
 
   public flip(): void {
-    // Проста логіка перевертання
     console.log(`Common PickUp Card flipped: No special effects.`);
   }
 
   public onClick(): void {
-    // Клік просто запускає перевертання
     this.flip();
   }
 }
