@@ -1,0 +1,33 @@
+/* packages/react-card-adapter/src/styles/Frame.css */
+
+.card-frame {
+  width: 100%;
+  height: 10px;
+  margin-bottom: 10px;
+}
+
+/* Стилістична реалізація: */
+.frame--style-basic {
+  border-bottom: 2px solid var(--frame-color, gray);
+}
+
+.frame--style-ornate {
+  /* Складний стиль для EPIC */
+  border: 4px groove var(--frame-color, gold);
+  box-shadow: 0 0 10px var(--frame-color, gold);
+}
+
+/* Реалізація анімації */
+.frame--anim-sparkle {
+  animation: sparkle-glow 1s infinite alternate;
+}
+
+@keyframes sparkle-glow {
+  from {
+    opacity: 0.8;
+  }
+
+  to {
+    opacity: 1;
+  }
+}

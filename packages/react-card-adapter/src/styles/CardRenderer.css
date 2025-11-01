@@ -1,0 +1,59 @@
+/* packages/react-card-adapter/src/CardRenderer.css */
+
+/* --- ОСНОВНА ОБГОРТКА КАРТКИ (A11Y & СТИЛІ) --- */
+.card-wrapper {
+  /* Раніше було інлайн-стилем */
+  border: 2px solid #333;
+  margin: 20px;
+  padding: 10px;
+  cursor: pointer;
+  width: 300px;
+  position: relative;
+  /* Видаляємо стандартний outline, щоб замінити його красивішим ефектом */
+  outline: none;
+}
+
+/* Стан фокусу: КРИТИЧНО для A11Y */
+.card-wrapper:focus {
+  box-shadow: 0 0 0 3px rgba(0, 100, 255, 0.7);
+  /* Чітке візуальне виділення */
+  border-color: blue;
+}
+
+.card-wrapper:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.card-renderer-info {
+  text-align: center;
+  color: #555;
+  font-size: 10px;
+  margin-bottom: 10px;
+}
+
+/* --- СТИЛІ ЕЛЕМЕНТІВ МАПИ --- */
+
+.card-image-content {
+  width: 100%;
+  display: block;
+  height: auto;
+}
+
+.influence-marker {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  font-size: 18px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  padding: 2px 5px;
+}
+
+.card-gem {
+  width: 15px;
+  height: 15px;
+  background-color: var(--gem-color, red);
+  /* Приклад передачі кольору через CSS-змінну */
+  border-radius: 3px;
+  margin: 5px auto;
+}
