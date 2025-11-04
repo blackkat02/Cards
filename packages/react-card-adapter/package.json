@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc"
+    "build": "pnpm -r --parallel build",
+    "dev": "pnpm --filter=demo-react-app dev",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "keywords": [],
   "author": "",
@@ -17,9 +20,13 @@
     "react-dom": "^19.2.0"
   },
   "devDependencies": {
+    "@storybook/addon-essentials": "8.6.14",
+    "@storybook/addon-interactions": "8.6.14",
+    "@storybook/react-vite": "8.0.0",
     "@types/node": "^24.9.2",
     "@types/react": "^19.2.2",
     "@types/react-dom": "^19.2.2",
+    "storybook": "8.0.0",
     "typescript": "^5.9.3"
   }
 }

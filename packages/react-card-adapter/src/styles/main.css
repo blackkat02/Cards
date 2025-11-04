@@ -1,0 +1,5 @@
+/* packages/react-card-adapter/src/styles/main.css */
+@import "./Description.css";
+@import "./Title.css";
+@import "./Frame.css";
+@import "../CardRenderer.css";

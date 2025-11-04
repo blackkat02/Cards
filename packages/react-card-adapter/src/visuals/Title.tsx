@@ -1,7 +1,7 @@
 // packages/react-card-adapter/src/visuals/Title.tsx
 
 import React from 'react';
-import '../styles/Title.css'; // Імпортуємо стилі
+// import '../styles/Title.css'; // Імпортуємо стилі
 
 // Інтерфейс властивостей (беремо з VisualComponent.props)
 interface TitleProps {

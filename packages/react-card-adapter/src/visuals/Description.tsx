@@ -2,7 +2,7 @@
 
 import React from 'react';
 // 🔥 Імпортуємо CSS для уникнення інлайн-стилів
-import '../styles/Description.css'; 
+// import '../styles/Description.css'; 
 
 // Інтерфейс для властивостей (props), які приходять із Ядра (VisualComponent.props)
 interface DescriptionProps {

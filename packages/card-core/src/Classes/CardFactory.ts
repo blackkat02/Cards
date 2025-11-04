@@ -12,12 +12,12 @@ import { CommonPickUpCard } from "../PickUpCards/CommonPickUpCard";
 import { RarePickUpCard } from "../PickUpCards/RarePickUpCard";
 import { EpicPickUpCard } from "../PickUpCards/EpicPickUpCard";
 
-abstract class AbstractCoreFactory {
+export abstract class AbstractCoreFactory {
   public abstract createCard(data: CardData): AbstractCardComponent;
 }
 
 // Конкретна Фабрика: МАРШРУТИЗАЦІЯ ЗА ТИПОМ І ЦІННІСТЮ
-class CoreCardFactory extends AbstractCoreFactory {
+export class CoreCardFactory extends AbstractCoreFactory {
   public createCard(data: CardData): AbstractCardComponent {
     switch (data.cardType) {
       case CardType.PICKUP:
@@ -65,4 +65,4 @@ class CoreCardFactory extends AbstractCoreFactory {
   }
 }
 
-export default { AbstractCoreFactory, CoreCardFactory };
+// export default { AbstractCoreFactory, CoreCardFactory };

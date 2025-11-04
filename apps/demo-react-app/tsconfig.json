@@ -1,7 +1,39 @@
 {
-  "files": [],
-  "references": [
-    { "path": "./tsconfig.app.json" },
-    { "path": "./tsconfig.node.json" }
-  ]
+  "compilerOptions": {
+    "target": "ES2020",
+    "useDefineForClassFields": true,
+    "lib": ["ES2020", "DOM", "dom.iterable"],
+    "module": "ESNext",
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "declaration": true,
+
+    "composite": true,
+
+    /* Компілятор */
+    "moduleResolution": "node",
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    
+    /* 🔥 КРИТИЧНО: Налаштування JSX */
+    "jsx": "react-jsx",
+
+    /* Лінтер та Суворість */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+
+    /* 💡 КРИТИЧНЕ ВИПРАВЛЕННЯ ДЛЯ МОНОРЕПО: */
+    "baseUrl": ".", // Базова директорія для пошуку модулів
+    "paths": {
+      // ✅ Вказуємо TSC, де знаходяться тайпінги наших локальних пакетів (dist/index.d.ts)
+      "card-core": ["../../packages/card-core/dist/index.d.ts"],
+      "react-card-adapter": ["../packages/react-card-adapter/dist/index.d.ts"]
+    }
+  },
+  
+  "include": ["src"]
 }

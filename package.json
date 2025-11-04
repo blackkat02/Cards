@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+    "build": "pnpm -r --parallel build",
+    "dev": "pnpm --filter=demo-react-app dev",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

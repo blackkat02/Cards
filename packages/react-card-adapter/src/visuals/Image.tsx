@@ -1,7 +1,7 @@
 // packages/react-card-adapter/src/visuals/Image.tsx
 
 import React from 'react';
-import '../styles/Image.css';
+// import '../styles/Image.css';
 
 interface ImageProps {
     source: string; // Шлях до зображення з Ядра: /pckup/images/ID.jpg

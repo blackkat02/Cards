@@ -1,7 +1,7 @@
 // packages/react-card-adapter/src/visuals/Frame.tsx
 
 import React from 'react';
-import '../styles/Frame.css';
+// import '../styles/Frame.css';
 
 interface FrameProps {
     style: 'Basic' | 'Metallic' | 'Ornate';

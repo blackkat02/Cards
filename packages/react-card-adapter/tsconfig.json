@@ -10,7 +10,8 @@
     "strict": true,
     "declaration": true,
     "skipLibCheck": true,
-    "jsx": "react-jsx" 
+    "jsx": "react-jsx",
+    "composite": true 
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "dist"]

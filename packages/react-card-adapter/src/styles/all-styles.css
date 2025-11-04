@@ -1,0 +1,9 @@
+/* packages/react-card-adapter/src/styles/all-styles.css */
+
+/* Імпортуємо стилі для CardRenderer, Title, Frame, Description, які знаходяться поруч */
+@import "../CardRenderer.css";
+@import "./Title.css";
+@import "./Frame.css";
+@import "./Description.css";
+
+/* Додай тут усі інші CSS-файли */
