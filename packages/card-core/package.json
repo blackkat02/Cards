@@ -7,10 +7,11 @@
   "files": [
     "dist"
   ],
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc"
-  },
+"scripts": {
+  "test": "vitest",
+  "test:watch": "vitest --watch",
+  "build": "tsc"
+},
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -19,6 +20,8 @@
     "@types/node": "^24.9.1",
     "@types/react": "^19.2.2",
     "@types/react-dom": "^19.2.2",
-    "typescript": "^5.9.3"
+    "@vitest/coverage-v8": "^4.0.7",
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.7"
   }
 }

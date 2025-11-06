@@ -20,13 +20,9 @@
     "react-dom": "^19.2.0"
   },
   "devDependencies": {
-    "@storybook/addon-essentials": "8.6.14",
-    "@storybook/addon-interactions": "8.6.14",
-    "@storybook/react-vite": "8.0.0",
     "@types/node": "^24.9.2",
     "@types/react": "^19.2.2",
     "@types/react-dom": "^19.2.2",
-    "storybook": "8.0.0",
     "typescript": "^5.9.3"
   }
 }
