@@ -16,5 +16,8 @@
   "workspaces": [
     "packages/*",
     "apps/*"
-  ]
+  ],
+  "devDependencies": {
+    "cpx": "^1.5.0"
+  }
 }

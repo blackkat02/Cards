@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "pnpm --filter=card-core build && pnpm --filter=react-card-adapter build && pnpm --filter=demo-react-app build",
     "lint": "eslint .",
     "preview": "vite preview"
   },

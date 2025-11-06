@@ -2,10 +2,13 @@
   "name": "react-card-adapter",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "type": "module", 
+  "main": "dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "pnpm -r --parallel build",
+    "build:ts": "tsc",
+    "build:assets": "cpx \"src/**/*.css\" dist",
+    "build": "pnpm build:ts && pnpm build:assets",
     "dev": "pnpm --filter=demo-react-app dev",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"

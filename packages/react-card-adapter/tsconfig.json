@@ -2,7 +2,8 @@
 {
   "compilerOptions": {
     "target": "ES2020",
-    "module": "CommonJS",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
     "rootDir": "./src",
     "outDir": "./dist",
     "esModuleInterop": true,
@@ -14,5 +15,13 @@
     "composite": true 
   },
   "include": ["src/**/*"],
-  "exclude": ["node_modules", "dist"]
+  "exclude": ["node_modules", "dist"],
+  "paths": { 
+      // "card-core": ["../card-core/src"],
+      // "card-core/*": ["../card-core/src/*"]
+      
+      // Або, якщо ви хочете бачити лише згенеровані декларації (.d.ts)
+      "card-core": ["../card-core/dist"], 
+      "card-core/*": ["../card-core/dist/*"] 
+    },
 }

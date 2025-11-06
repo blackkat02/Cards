@@ -3,10 +3,10 @@
 
 import React from 'react';
 // ✅ ДИСЦИПЛІНА: Імпортуємо з кореня пакета 'card-core', а не з внутрішнього /src/
-import { AbstractCardComponent, VisualComponent, CardData } from 'card-core'; 
-import { Title } from '../visuals/Title';
-import { Frame } from '../visuals/Frame'; 
-import { Description } from '../visuals/Description'; 
+import { AbstractCardComponent, VisualComponent, PickUpCardData } from 'card-core'; 
+import { Title } from '../visuals/Title.js';
+import { Frame } from '../visuals/Frame.js'; 
+import { Description } from '../visuals/Description.js'; 
 // 🔥 КРИТИЧНО: Імпортуємо зовнішні стилі
 import  '../styles/CardRenderer.css'; 
 

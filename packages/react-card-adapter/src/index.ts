@@ -2,7 +2,7 @@
 // 🔥 Повний код фасаду:
 
 // 1. Імпортуємо сам компонент-міст
-export { CardRenderer } from "./CardRenderer";
+export { CardRenderer } from "./CardRenderer.js";
 
 // 2. Експортуємо його, щоб він був доступний через 'react-card-adapter'
 // export { CardRenderer };

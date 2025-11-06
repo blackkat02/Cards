@@ -5,9 +5,9 @@ import React from 'react';
 import { AbstractCardComponent, VisualComponent } from 'card-core'; 
 
 // Імпорт візуальних компонентів (потрібно створити ці файли!)
-import { Title } from './visuals/Title';
-import { Frame } from './visuals/Frame'; 
-import { Description } from './visuals/Description'; 
+import { Title } from './visuals/Title.js';
+import { Frame } from './visuals/Frame.js'; 
+import { Description } from './visuals/Description.js'; 
 // TODO: Додай Aura, Gem, InfluenceMarker після їх створення
 import './CardRenderer.css'; 
 
