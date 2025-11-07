@@ -1,74 +1,81 @@
 // packages/react-card-adapter/src/CardRenderer.tsx
 
-import React from 'react';
 // 🔥 Імпорт з кореня пакета Ядра (завдяки index.ts)
-import { AbstractCardComponent, VisualComponent } from 'card-core'; 
+import { AbstractCardComponent, VisualComponent } from "card-core";
+import React, { FC } from "react";
 
 // Імпорт візуальних компонентів (потрібно створити ці файли!)
-import { Title } from './visuals/Title.js';
-import { Frame } from './visuals/Frame.js'; 
-import { Description } from './visuals/Description.js'; 
+import { Title } from "./visuals/Title.js";
+import { Frame } from "./visuals/Frame.js";
+import { Description } from "./visuals/Description.js";
 // TODO: Додай Aura, Gem, InfluenceMarker після їх створення
-import './CardRenderer.css'; 
+import "./CardRenderer.css";
 
-
-// 1. 🔥 МАПА АДАПТАЦІЇ (VisualComponentMap)
-// Ця мапа є серцем патерну Адаптер/Міст. Вона зв'язує Імена з Ядра з React-компонентами.
-const VisualComponentMap: Record<VisualComponent['name'], React.FC<any>> = {
-    'Frame': Frame,
-    'Title': Title,
-    'Description': Description,
-    // ✅ Компоненти з інлайн-реалізацією (винесені від інлайн-стилів):
-    'Image': ({ source }) => <img src={source} alt="Card visual" className="card-image-content" />,
-    'Gem': ({ color }) => <div className="card-gem" style={{ backgroundColor: color }} />, 
-    'InfluenceMarker': ({ level }) => <span className="influence-marker">⭐{level}</span>,
-    // 'Aura': ({ effect }) => <div className={`card-aura card-aura--${effect}`} />,
+// 1. МАПА АДАПТАЦІЇ (VisualComponentMap)
+const VisualComponentMap: Record<VisualComponent["name"], React.FC<any>> = {
+  Frame: Frame,
+  Title: Title,
+  Description: Description,
+  Image: ({ source }) => (
+    <img src={source} alt="Card visual" className="card-image-content" />
+  ),
+  Gem: ({ color }) => (
+    <div className="card-gem" style={{ backgroundColor: color }} />
+  ),
+  InfluenceMarker: ({ level }) => (
+    <span className="influence-marker">⭐{level}</span>
+  ),
 };
 
-
-interface CardRendererProps {
-    // Приймаємо абстрактний об'єкт, який дотримується контракту AbstractCardComponent
-    card: AbstractCardComponent;
+export interface CardRendererProps {
+  card: AbstractCardComponent;
 }
 
-export const CardRenderer: React.FC<CardRendererProps> = ({ card }) => {
-    // 1. Отримуємо абстрактну структуру з Ядра
-    const visualStructure: VisualComponent[] = card.getVisualComponents();
+export const CardRenderer: FC<CardRendererProps> = ({ card }) => {
+  const visualStructure: VisualComponent[] = card.getVisualComponents();
 
-    // 2. Обробник активації (миша та клавіатура)
-    const handleActivate = () => {
-        card.onClick(); 
-        console.log(`[Renderer] Card activated: ${card.getData().title}`); 
-    };
-    
-    // 3. Обробник клавіатури: активація при натисканні Enter або Space (A11Y)
-    const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
-        if (event.key === 'Enter' || event.key === ' ') {
-            event.preventDefault(); 
-            handleActivate();
+  const handleActivate = () => {
+    card.onClick();
+    console.log(`[Renderer] Card activated: ${card.getData().title}`);
+  };
+
+  // 🔥 ВИПРАВЛЕНО: Функція handleKeyDown повинна бути визначена тут,
+  // якщо ви хочете її використовувати. Вона була у вашому попередньому коді,
+  // але була загублена при фінальному редагуванні.
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      handleActivate();
+    }
+  };
+
+  return (
+    <button
+      className="card-wrapper"
+      onClick={handleActivate}
+      // 🔥 ВИПРАВЛЕНО: Використовуємо handleKeyDown для доступності
+      onKeyDown={handleKeyDown}
+      // 🔥 ВИПРАВЛЕНО: Встановлюємо type для уникнення надсилання форми
+      type="button"
+    >
+      <h3 className="card-renderer-info">
+        Рендер: {card.getData().cardType} - {card.getData().rarity}
+      </h3>
+
+      {/* 🔥 ВИПРАВЛЕНО: ЛОГІКА MAP ТЕПЕР ПРАВИЛЬНО РОЗТАШОВАНА В БЛОЦІ JSX */}
+      {visualStructure.map((visualElement, index) => {
+        const Component = VisualComponentMap[visualElement.name];
+
+        if (!Component) {
+          console.warn(
+            `Renderer missing React component for: ${visualElement.name}`
+          );
+          return null;
         }
-    };
 
-    return (
-        <button 
-            className="card-wrapper" 
-            onClick={handleActivate} 
-            // role="button" та tabIndex={0} ТЕПЕР АВТОМАТИЧНІ!
-        >
-            <h3 className="card-renderer-info">Рендер: {card.getData().cardType} - {card.getData().rarity}</h3>
-            
-            {/* 4. ГОЛОВНА ЛОГІКА: Перетворення VisualComponent[] на JSX */}
-            {visualStructure.map((visualElement, index) => {
-                const Component = VisualComponentMap[visualElement.name];
-                
-                if (!Component) {
-                    console.warn(`Renderer missing React component for: ${visualElement.name}`);
-                    return null;
-                }
-                
-                // Передаємо props з Ядра в React-компонент
-                return <Component key={index} {...visualElement.props} />;
-            })}
-        </button>
-    );
+        // Передаємо props з Ядра в React-компонент
+        return <Component key={index} {...visualElement.props} />;
+      })}
+    </button>
+  );
 };
