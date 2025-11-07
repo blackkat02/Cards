@@ -1,0 +1,16 @@
+// cSpell.json (у корені монорепо)
+{
+    "words": [
+        "autodocs",
+        "pnpm",
+        "vite",
+        "chromatic",
+        // Додайте інші технічні терміни, які він не знає
+    ],
+    "ignorePaths": [
+        "**/node_modules/**",
+        "**/.git/**",
+        "**/dist/**",
+        "**/.storybook/**"
+    ]
+}
