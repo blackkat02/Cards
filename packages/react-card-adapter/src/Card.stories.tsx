@@ -1,57 +1,51 @@
-// ✅ Імпорт типів Storybook для Vite
-import type { Meta, StoryObj } from '@storybook/react-vite';
-
-// ✅ Імпорт компонента та ЙОГО ВЛАСНИХ Props (для коректного Type Inference)
-import { CardRenderer, CardRendererProps } from './CardRenderer.js'; 
-
-import { CommonPickUpCard, PickUpCardData, Rarity, CardType } from 'card-core';
+import type { Meta, StoryObj } from "@storybook/react-vite";
+import { CardGrid, CardGridProps } from "./CardGrid.js"; // Імпортуємо Grid
+import { CardRenderer, CardRendererProps } from "./CardRenderer.js";
+import { threeCardInstances, WorkerCardInstance } from "./data/card.data.js"; // Імпортуємо дані
 
 // -----------------------------------------------------------
-// 1. ПІДГОТОВКА ДАНИХ ТА ІНСТАНЦІЮВАННЯ КЛАСУ
+// 1. МЕТАДАНІ: Тепер ми тестуємо CardGrid за замовчуванням
 // -----------------------------------------------------------
 
-const cardProps: PickUpCardData = {
-    id: 'sb-test-1', 
-    title: 'Storybook Worker',
-    description: 'Тестова карта для Storybook.',
-    rarity: Rarity.COMMON, 
-    
-    // 🔥 ДОДАНО ОБОВ'ЯЗКОВІ ПОЛЯ:
-    cardType: CardType.PICKUP, // Від CardData
-    influenceLevel: 1,         // Від PickUpCardData
-    archetype: 'Worker',       // Від PickUpCardData
-};
-
-// Створюємо ІНСТАНС КЛАСУ КАРТИ (передаємо ОДИН об'єкт)
-const cardInstance = new CommonPickUpCard(cardProps); 
-
-// -----------------------------------------------------------
-// 2. МЕТАДАНІ STORYBOOK
-// -----------------------------------------------------------
-
-// ✅ ВИКОРИСТОВУЄМО CardRendererProps для Meta, щоб TS знав про пропси!
-const meta: Meta<CardRendererProps> = {
-    title: 'Cards/CommonCard', 
-    component: CardRenderer,
-    parameters: {
-        layout: 'centered', 
-    },
-    // Цей рядок викликав помилку, якщо TS Server не бачив нових типів. 
-    // Залишимо його, якщо TS Server перезавантажено:
-    tags: ['autodocs'], 
+// ✅ Тестуємо Grid, використовуючи його Props
+const meta: Meta<CardGridProps> = {
+  title: "Cards/Card Collection",
+  component: CardGrid,
+  parameters: {
+    layout: "fullscreen", // Використовуємо повний екран для сітки
+  },
+  tags: ["autodocs"],
 };
 
 export default meta;
 
 // -----------------------------------------------------------
-// 3. ІСТОРІЯ КОМПОНЕНТА
+// 2. ІСТОРІЯ: Відображення 3-х Карток у Сітці
 // -----------------------------------------------------------
 
-type Story = StoryObj<typeof CardRenderer>;
+type GridStory = StoryObj<typeof CardGrid>;
 
-export const CommonCardExample: Story = {
-    args: {
-        // 🔥 ВИПРАВЛЕНО: Використовуємо 'card' замість 'data'
-        card: cardInstance, 
-    },
+export const ThreeCardsInGrid: GridStory = {
+  args: {
+    // Передаємо масив, створений в card.data.ts
+    cards: threeCardInstances,
+  },
+};
+
+// -----------------------------------------------------------
+// 3. ДОДАТКОВА ІСТОРІЯ: Збереження Одиничного Рендера
+// -----------------------------------------------------------
+
+type RendererStory = StoryObj<typeof CardRenderer>;
+
+// Ми можемо використовувати компонент CardRenderer окремо,
+// навіть якщо метадані встановлені для CardGrid
+export const SingleCardRenderer: RendererStory = {
+  render: (args) => <CardRenderer {...args} />,
+  args: {
+    card: WorkerCardInstance,
+  },
+  parameters: {
+    layout: "centered",
+  },
 };

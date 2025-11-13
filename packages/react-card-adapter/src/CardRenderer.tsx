@@ -4,7 +4,6 @@
 import { AbstractCardComponent, VisualComponent } from "card-core";
 import React, { FC } from "react";
 
-// Імпорт візуальних компонентів (потрібно створити ці файли!)
 import { Title } from "./visuals/Title.js";
 import { Frame } from "./visuals/Frame.js";
 import { Description } from "./visuals/Description.js";
@@ -39,9 +38,6 @@ export const CardRenderer: FC<CardRendererProps> = ({ card }) => {
     console.log(`[Renderer] Card activated: ${card.getData().title}`);
   };
 
-  // 🔥 ВИПРАВЛЕНО: Функція handleKeyDown повинна бути визначена тут,
-  // якщо ви хочете її використовувати. Вона була у вашому попередньому коді,
-  // але була загублена при фінальному редагуванні.
   const handleKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>) => {
     if (event.key === "Enter" || event.key === " ") {
       event.preventDefault();
@@ -53,16 +49,13 @@ export const CardRenderer: FC<CardRendererProps> = ({ card }) => {
     <button
       className="card-wrapper"
       onClick={handleActivate}
-      // 🔥 ВИПРАВЛЕНО: Використовуємо handleKeyDown для доступності
       onKeyDown={handleKeyDown}
-      // 🔥 ВИПРАВЛЕНО: Встановлюємо type для уникнення надсилання форми
       type="button"
     >
       <h3 className="card-renderer-info">
         Рендер: {card.getData().cardType} - {card.getData().rarity}
       </h3>
 
-      {/* 🔥 ВИПРАВЛЕНО: ЛОГІКА MAP ТЕПЕР ПРАВИЛЬНО РОЗТАШОВАНА В БЛОЦІ JSX */}
       {visualStructure.map((visualElement, index) => {
         const Component = VisualComponentMap[visualElement.name];
 
