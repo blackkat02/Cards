@@ -5,11 +5,11 @@ import { CommonPickUpCard, PickUpCardData, Rarity, CardType } from "card-core";
 const workerCardData: PickUpCardData = {
   id: "worker-1",
   title: "Storybook Worker",
-  description: "Це звичайний робочий. Серце економіки.",
+  description: "Це звичайна картка. Серце економіки.",
   rarity: Rarity.COMMON,
   cardType: CardType.PICKUP,
   influenceLevel: 1,
-  archetype: "Worker",
+  archetype: "Worker77",
 };
 
 // 2. Дані для другої картки (приклад іншої картки)

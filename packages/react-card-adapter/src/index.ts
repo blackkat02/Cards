@@ -1,8 +1,12 @@
 // packages/react-card-adapter/src/index.ts
-// 🔥 Повний код фасаду:
 
 // 1. Імпортуємо сам компонент-міст
 export { CardRenderer } from "./CardRenderer.js";
+
+export {
+  WorkerCardInstance,
+  StrategistCardInstance,
+} from "./data/card.data.js";
 
 // 2. Експортуємо його, щоб він був доступний через 'react-card-adapter'
 // export { CardRenderer };

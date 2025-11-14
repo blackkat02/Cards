@@ -7,7 +7,6 @@
   text-align: justify;
 }
 
-/* Приклад використання CSS-змінної */
 :root {
   --color-default-text: #333;
 }

@@ -30,7 +30,7 @@
     "paths": {
       // ✅ Вказуємо TSC, де знаходяться тайпінги наших локальних пакетів (dist/index.d.ts)
       "card-core": ["../../packages/card-core/dist/index.d.ts"],
-      "react-card-adapter": ["../packages/react-card-adapter/dist/index.d.ts"]
+      "react-card-adapter": ["../../packages/react-card-adapter/dist/index.d.ts"]
     }
   },
   

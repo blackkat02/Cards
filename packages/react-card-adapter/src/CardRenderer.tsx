@@ -1,6 +1,5 @@
 // packages/react-card-adapter/src/CardRenderer.tsx
 
-// 🔥 Імпорт з кореня пакета Ядра (завдяки index.ts)
 import { AbstractCardComponent, VisualComponent } from "card-core";
 import React, { FC } from "react";
 

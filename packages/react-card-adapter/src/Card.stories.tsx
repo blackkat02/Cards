@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { CardGrid, CardGridProps } from "./CardGrid.js"; // Імпортуємо Grid
+import { CardGrid, CardGridProps } from "./CardGrid.js";
 import { CardRenderer, CardRendererProps } from "./CardRenderer.js";
-import { threeCardInstances, WorkerCardInstance } from "./data/card.data.js"; // Імпортуємо дані
+import { threeCardInstances, WorkerCardInstance } from "./data/card.data.js";
 
 // -----------------------------------------------------------
 // 1. МЕТАДАНІ: Тепер ми тестуємо CardGrid за замовчуванням
@@ -12,7 +12,7 @@ const meta: Meta<CardGridProps> = {
   title: "Cards/Card Collection",
   component: CardGrid,
   parameters: {
-    layout: "fullscreen", // Використовуємо повний екран для сітки
+    layout: "fullscreen",
   },
   tags: ["autodocs"],
 };
@@ -38,8 +38,6 @@ export const ThreeCardsInGrid: GridStory = {
 
 type RendererStory = StoryObj<typeof CardRenderer>;
 
-// Ми можемо використовувати компонент CardRenderer окремо,
-// навіть якщо метадані встановлені для CardGrid
 export const SingleCardRenderer: RendererStory = {
   render: (args) => <CardRenderer {...args} />,
   args: {
