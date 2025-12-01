@@ -12,7 +12,6 @@ const COMMON_DATA: PickUpCardData = {
   cardType: CardType.PICKUP,
   description: "Test",
 
-  // 🔥 ДОДАЄМО ВИМАГАНІ ПОЛЯ PICKUP
   influenceLevel: 2,
   archetype: "Laborer",
 };
@@ -20,14 +19,11 @@ const COMMON_DATA: PickUpCardData = {
 describe("CoreCardFactory", () => {
   const factory = new CoreCardFactory();
 
-  // ТЕСТ 1: Тепер має пройти
   it("should create CommonPickUpCard when Rarity is COMMON", () => {
-    // 'as any' більше не потрібен, бо дані відповідають контракту
     const card = factory.createCard(COMMON_DATA);
     expect(card).toBeInstanceOf(CommonPickUpCard);
   });
 
-  // ТЕСТ 2: Тепер перевіряємо, чи Фабрика зловить помилку Rarity
   it("should throw error for invalid Rarity", () => {
     // Створюємо об'єкт з коректними PickUp-даними, але невірною Rarity
     const badRarityData = {
