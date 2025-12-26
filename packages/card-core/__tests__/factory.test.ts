@@ -1,5 +1,3 @@
-// packages/card-core/__tests__/factory.test.ts
-
 import { describe, it, expect } from "vitest";
 import { CoreCardFactory } from "../src/Classes/CardFactory";
 import { CommonPickUpCard } from "../src/PickUpCards/CommonPickUpCard";
